@@ -1,5 +1,7 @@
+"use client";
+
 import React, { useState } from 'react';
-import { useLoginMutation } from '../services/api';
+import { useLoginMutation } from '@/services/api';
 import { useRouter } from 'next/router';
 
 const Login = () => {

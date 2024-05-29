@@ -1,4 +1,4 @@
-import {useTasksQuery, useDeleteTaskMutation, Task} from '../services/api';
+import {useTasksQuery, useDeleteTaskMutation, Task} from '@/services/api';
 import { useState } from 'react';
 import TaskForm from './TaskForm';
 

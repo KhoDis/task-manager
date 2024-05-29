@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Task, useCreateTaskMutation, useUpdateTaskMutation} from '../services/api';
+import {Task, useCreateTaskMutation, useUpdateTaskMutation} from '@/services/api';
 
 const TaskForm = ({ task, onClose }: { task: Task | null; onClose: () => void }) => {
   const [title, setTitle] = useState(task ? task.title : '');

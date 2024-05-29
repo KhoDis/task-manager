@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import { useSignupMutation } from '../services/api';
-import { useRouter } from 'next/router';
+'use client';
 
-const SignUp = () => {
+import React, { useState } from 'react';
+import { useSignupMutation } from '@/services/api';
+import { useRouter } from 'next/navigation';
+
+export default function SignUpPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [signup] = useSignupMutation();
@@ -11,12 +13,11 @@ const SignUp = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await signup({ username, password });
-    await router.push('/login');
+    router.push('/login');
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Sign Up</h1>
       <input
         type="text"
         placeholder="Username"
@@ -32,6 +33,4 @@ const SignUp = () => {
       <button type="submit">Sign Up</button>
     </form>
   );
-};
-
-export default SignUp;
+}
