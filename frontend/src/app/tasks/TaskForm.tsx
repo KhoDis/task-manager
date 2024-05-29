@@ -11,8 +11,10 @@ const TaskForm = ({ task, onClose }: { task: Task | null; onClose: () => void })
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (task) {
-      await updateTask({ id: task.id, title, description, completed });
+      console.log("Update task", task.taskId, title, description, completed);
+      await updateTask({ id: task.taskId, title, description, completed });
     } else {
+      console.log("Create task", title, description);
       await createTask({ title, description });
     }
     onClose();
