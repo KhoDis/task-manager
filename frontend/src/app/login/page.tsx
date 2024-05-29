@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useLoginMutation } from '@/services/api';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
   const [username, setUsername] = useState('');
