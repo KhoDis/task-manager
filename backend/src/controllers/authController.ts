@@ -13,6 +13,7 @@ export const signUp = async (req: AuthenticatedRequest, res: Response) => {
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET!);
     res.json({ token });
   } catch (error) {
+    console.error(error);
     res.status(500).send('Server error');
   }
 };
@@ -31,6 +32,7 @@ export const logIn = async (req: Request, res: Response) => {
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET!);
     res.json({ token });
   } catch (error) {
+    console.error(error);
     res.status(500).send('Server error');
   }
 };
@@ -40,6 +42,7 @@ export const me = async (req: AuthenticatedRequest, res: Response) => {
     const user = await User.findById(req.userId).select('-password');
     res.json(user);
   } catch (error) {
+    console.error(error);
     res.status(500).send('Server error');
   }
 };
