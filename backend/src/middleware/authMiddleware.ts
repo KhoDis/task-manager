@@ -4,12 +4,15 @@ import {AuthenticatedRequest} from "../types";
 
 const authMiddleware = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   // Get token from header
-  const token = req.header('x-auth-token');
+  const auth = req.header('Authorization');
 
   // Check if token doesn't exist
-  if (!token) {
+  if (!auth) {
     return res.status(401).json({ msg: 'No token, authorization denied' });
   }
+
+  // Verify token
+  const token = auth.replace('Bearer ', '');
 
   try {
     // Verify token
