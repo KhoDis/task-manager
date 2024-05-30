@@ -14,11 +14,13 @@ const TaskList = () => {
 
   const tasks = data && data.map((task) => (
     <div key={task.taskId} className="border p-4 my-4 flex items-center justify-between">
-      <p>{task.taskId}</p>
-      <h2>{task.title}</h2>
-      <p>{task.description}</p>
-      <button onClick={() => setEditingTask(task)}>Edit</button>
-      <button onClick={() => deleteTask(task.taskId)}>Delete</button>
+      <h2 className="text-lg font-bold">{task.title}</h2>
+      <p className="text-sm">{task.description}</p>
+      <p className="text-sm">{task.completed ? 'Completed' : 'Not completed'}</p>
+      <div className="flex space-x-4">
+        <button onClick={() => setEditingTask(task)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</button>
+        <button onClick={() => deleteTask(task.taskId)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
+      </div>
     </div>
   ));
 
