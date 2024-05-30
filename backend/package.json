@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsx src/index.ts --watch"
+    "start": "tsx src/index.ts --watch",
+    "lint": "prettier --write ."
   },
   "author": "KhoDis",
   "license": "ISC",
@@ -14,6 +15,7 @@
     "@types/jsonwebtoken": "^9.0.6",
     "@types/morgan": "^1.9.9",
     "@types/uuid": "^9.0.8",
+    "prettier": "3.2.5",
     "tsx": "^4.11.0"
   },
   "dependencies": {
