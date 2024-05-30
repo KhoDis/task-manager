@@ -41,7 +41,7 @@ export type { CreateTaskRequest, UpdateTaskRequest };
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000/api",
+    baseUrl: process.env.API_URL,
     prepareHeaders: (headers) => {
       const token = localStorage.getItem("token");
       if (token) {
