@@ -54,7 +54,7 @@ export const updateTask = async (req: AuthenticatedRequest, res: Response) => {
 export const deleteTask =   async (req: AuthenticatedRequest, res: Response) => {
   const { id } = req.params;
   try {
-    const task = await Task.findById(id);
+    const task = await Task.findOne({ taskId: id });
     if (!task) return res.status(404).json({ msg: 'Task not found' });
     if (!task.userId) return res.status(403).json({ msg: 'Task has no user' });
     if (task.userId.toString() !== req.userId) return res.status(403).json({ msg: 'Not authorized' });
