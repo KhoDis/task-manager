@@ -27,7 +27,7 @@ const TaskList = () => {
   return (
     <div>
       {tasks.length > 0 ? tasks : <p>No tasks found.</p>}
-      {editingTask && <TaskForm task={editingTask} onClose={() => setEditingTask(null)} />}
+      <TaskForm task={editingTask} onClose={() => setEditingTask(null)} />
     </div>
   );
 };
