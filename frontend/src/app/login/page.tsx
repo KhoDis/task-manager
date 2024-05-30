@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState } from 'react';
-import { useLoginMutation } from '@/services/api';
-import { useRouter } from 'next/navigation';
+import React, { useState } from "react";
+import { useLoginMutation } from "@/services/api";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [login] = useLoginMutation();
   const router = useRouter();
 
@@ -14,13 +14,16 @@ const Login = () => {
     e.preventDefault();
     const { data } = await login({ username, password });
     if (data) {
-      localStorage.setItem('token', data.token);
-      await router.push('/tasks');
+      localStorage.setItem("token", data.token);
+      await router.push("/tasks");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="container mx-auto max-w-xs mt-8 p-4 bg-white rounded shadow text-center space-y-4 border border-gray-200 border-solid">
+    <form
+      onSubmit={handleSubmit}
+      className="container mx-auto max-w-xs mt-8 p-4 bg-white rounded shadow text-center space-y-4 border border-gray-200 border-solid"
+    >
       <h1 className="text-4xl font-bold">Login</h1>
       <input
         type="text"
@@ -36,12 +39,16 @@ const Login = () => {
         onChange={(e) => setPassword(e.target.value)}
         className="w-full p-2 border border-gray-200 rounded"
       />
-      <button type="submit"
-        className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      <button
+        type="submit"
+        className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
         Login
       </button>
-      <button onClick={() => router.push('/')}
-        className="w-full bg-transparent text-blue-500 font-bold py-2 px-4 rounded border border-blue-500">
+      <button
+        onClick={() => router.push("/")}
+        className="w-full bg-transparent text-blue-500 font-bold py-2 px-4 rounded border border-blue-500"
+      >
         Back to Home
       </button>
     </form>

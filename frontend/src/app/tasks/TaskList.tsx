@@ -1,8 +1,8 @@
 "use client";
 
-import {useTasksQuery, useDeleteTaskMutation, Task} from '@/services/api';
-import { useState } from 'react';
-import TaskForm from './TaskForm';
+import { useTasksQuery, useDeleteTaskMutation, Task } from "@/services/api";
+import { useState } from "react";
+import TaskForm from "./TaskForm";
 
 const TaskList = () => {
   const { data, error, isLoading } = useTasksQuery();
@@ -12,17 +12,34 @@ const TaskList = () => {
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading tasks.</p>;
 
-  const tasks = data && data.map((task) => (
-    <div key={task.taskId} className="border p-4 my-4 flex items-center justify-between">
-      <h2 className="text-lg font-bold">{task.title}</h2>
-      <p className="text-sm">{task.description}</p>
-      <p className="text-sm">{task.completed ? 'Completed' : 'Not completed'}</p>
-      <div className="flex space-x-4">
-        <button onClick={() => setEditingTask(task)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</button>
-        <button onClick={() => deleteTask(task.taskId)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
+  const tasks =
+    data &&
+    data.map((task) => (
+      <div
+        key={task.taskId}
+        className="border p-4 my-4 flex items-center justify-between"
+      >
+        <h2 className="text-lg font-bold">{task.title}</h2>
+        <p className="text-sm">{task.description}</p>
+        <p className="text-sm">
+          {task.completed ? "Completed" : "Not completed"}
+        </p>
+        <div className="flex space-x-4">
+          <button
+            onClick={() => setEditingTask(task)}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Edit
+          </button>
+          <button
+            onClick={() => deleteTask(task.taskId)}
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Delete
+          </button>
+        </div>
       </div>
-    </div>
-  ));
+    ));
 
   if (!tasks) return <p>Could not load tasks.</p>;
 

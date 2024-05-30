@@ -1,4 +1,4 @@
-import TaskList from '@/app/tasks/TaskList';
+import TaskList from "@/app/tasks/TaskList";
 
 const Tasks = () => {
   return (

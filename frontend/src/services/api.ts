@@ -1,4 +1,4 @@
-import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 type Task = {
   taskId: string;
@@ -17,7 +17,7 @@ type SignupResponse = {
 
 type TaskResponse = Task[];
 
-export type {Task, LoginResponse, SignupResponse};
+export type { Task, LoginResponse, SignupResponse };
 
 type CreateTaskRequest = {
   title: string;
@@ -36,57 +36,57 @@ type Credentials = {
   password: string;
 };
 
-export type {CreateTaskRequest, UpdateTaskRequest};
+export type { CreateTaskRequest, UpdateTaskRequest };
 
 export const api = createApi({
-  reducerPath: 'api',
+  reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:4000/api',
+    baseUrl: "http://localhost:4000/api",
     prepareHeaders: (headers) => {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       if (token) {
-        headers.set('Authorization', `Bearer ${token}`);
+        headers.set("Authorization", `Bearer ${token}`);
       }
       return headers;
-    }
+    },
   }),
 
   endpoints: (builder) => ({
     login: builder.mutation<LoginResponse, Credentials>({
-      query: ({username, password}) => ({
-        url: '/auth/login',
-        method: 'POST',
-        body: {username, password},
+      query: ({ username, password }) => ({
+        url: "/auth/login",
+        method: "POST",
+        body: { username, password },
       }),
     }),
     signup: builder.mutation<SignupResponse, Credentials>({
-      query: ({username, password}) => ({
-        url: '/auth/signup',
-        method: 'POST',
-        body: {username, password},
+      query: ({ username, password }) => ({
+        url: "/auth/signup",
+        method: "POST",
+        body: { username, password },
       }),
     }),
     tasks: builder.query<TaskResponse, void>({
-      query: () => '/tasks',
+      query: () => "/tasks",
     }),
     createTask: builder.mutation<Task, CreateTaskRequest>({
-      query: ({title, description}) => ({
-        url: '/tasks',
-        method: 'POST',
-        body: {title, description},
+      query: ({ title, description }) => ({
+        url: "/tasks",
+        method: "POST",
+        body: { title, description },
       }),
     }),
     updateTask: builder.mutation<Task, UpdateTaskRequest>({
-      query: ({id, title, description, completed}) => ({
+      query: ({ id, title, description, completed }) => ({
         url: `/tasks/${id}`,
-        method: 'PUT',
-        body: {title, description, completed},
+        method: "PUT",
+        body: { title, description, completed },
       }),
     }),
     deleteTask: builder.mutation<void, string>({
       query: (id) => ({
         url: `/tasks/${id}`,
-        method: 'DELETE',
+        method: "DELETE",
       }),
     }),
   }),
@@ -98,5 +98,5 @@ export const {
   useTasksQuery,
   useCreateTaskMutation,
   useUpdateTaskMutation,
-  useDeleteTaskMutation
+  useDeleteTaskMutation,
 } = api;

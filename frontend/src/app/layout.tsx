@@ -7,8 +7,8 @@ import StoreProvider from "@/app/StoreProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Task Manager',
-  description: 'A simple task manager application',
+  title: "Task Manager",
+  description: "A simple task manager application",
 };
 
 export default function RootLayout({
@@ -19,9 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <StoreProvider>
-          {children}
-        </StoreProvider>
+        <StoreProvider>{children}</StoreProvider>
       </body>
     </html>
   );

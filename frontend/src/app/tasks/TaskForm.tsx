@@ -1,9 +1,19 @@
-import React, {useState} from 'react';
-import {Task, useCreateTaskMutation, useUpdateTaskMutation} from '@/services/api';
+import React, { useState } from "react";
+import {
+  Task,
+  useCreateTaskMutation,
+  useUpdateTaskMutation,
+} from "@/services/api";
 
-const TaskForm = ({task, onClose}: { task: Task | null; onClose: () => void }) => {
-  const [title, setTitle] = useState(task ? task.title : '');
-  const [description, setDescription] = useState(task ? task.description : '');
+const TaskForm = ({
+  task,
+  onClose,
+}: {
+  task: Task | null;
+  onClose: () => void;
+}) => {
+  const [title, setTitle] = useState(task ? task.title : "");
+  const [description, setDescription] = useState(task ? task.description : "");
   const [completed, setCompleted] = useState(task ? task.completed : false);
   const [createTask] = useCreateTaskMutation();
   const [updateTask] = useUpdateTaskMutation();
@@ -12,18 +22,22 @@ const TaskForm = ({task, onClose}: { task: Task | null; onClose: () => void }) =
     e.preventDefault();
     if (task) {
       console.log("Update task", task.taskId, title, description, completed);
-      await updateTask({id: task.taskId, title, description, completed});
+      await updateTask({ id: task.taskId, title, description, completed });
     } else {
       console.log("Create task", title, description);
-      await createTask({title, description});
+      await createTask({ title, description });
     }
     onClose();
   };
 
   return (
-    <form onSubmit={handleSubmit}
-          className="border p-4 my-4 space-y-4 border-gray-200 rounded shadow flex flex-col items-center justify-center max-w-xs mx-auto">
-      <h1 className="text-lg font-bold">{task ? 'Edit Task' : 'Create Task'}</h1>
+    <form
+      onSubmit={handleSubmit}
+      className="border p-4 my-4 space-y-4 border-gray-200 rounded shadow flex flex-col items-center justify-center max-w-xs mx-auto"
+    >
+      <h1 className="text-lg font-bold">
+        {task ? "Edit Task" : "Create Task"}
+      </h1>
       <input
         type="text"
         placeholder="Title"
@@ -47,8 +61,12 @@ const TaskForm = ({task, onClose}: { task: Task | null; onClose: () => void }) =
         />
         Completed
       </label>
-      <button type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{task ? 'Update' : 'Create'}</button>
+      <button
+        type="submit"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        {task ? "Update" : "Create"}
+      </button>
     </form>
   );
 };
