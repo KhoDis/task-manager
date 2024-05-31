@@ -50,7 +50,7 @@ export const api = createApi({
       return headers;
     },
   }),
-
+  tagTypes: ['Task'],
   endpoints: (builder) => ({
     login: builder.mutation<LoginResponse, Credentials>({
       query: ({ username, password }) => ({
@@ -68,6 +68,7 @@ export const api = createApi({
     }),
     tasks: builder.query<TaskResponse, void>({
       query: () => "/tasks",
+      providesTags: ['Task'],
     }),
     createTask: builder.mutation<Task, CreateTaskRequest>({
       query: ({ title, description }) => ({
@@ -75,6 +76,7 @@ export const api = createApi({
         method: "POST",
         body: { title, description },
       }),
+      invalidatesTags: ['Task'],
     }),
     updateTask: builder.mutation<Task, UpdateTaskRequest>({
       query: ({ id, title, description, completed }) => ({
@@ -82,12 +84,14 @@ export const api = createApi({
         method: "PUT",
         body: { title, description, completed },
       }),
+      invalidatesTags: ['Task'],
     }),
     deleteTask: builder.mutation<void, string>({
       query: (id) => ({
         url: `/tasks/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ['Task'],
     }),
   }),
 });
